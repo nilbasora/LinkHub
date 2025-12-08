@@ -1,0 +1,47 @@
+# setup.config.yaml
+
+profile:
+  name: "LinkHub"
+  avatarUrl: "/assets/placeholder.png"
+  bio: "A static, open-source, GitHub Pages–served alternative to Linktree."
+
+# Social links: empty or missing values are treated as "not set"
+social:
+  X: "https://x.com/nilbasora"
+  github: "https://github.com/LinkHub"
+  linkedin: ""
+  facebook: ""
+  instagram: ""
+  youtube: ""
+  tiktok: ""
+  website: "https://nilbasora.github.io/LinkHub/"
+
+sections:
+  LinkHub:
+    title: "LinkHub Links"
+    links:
+      website:
+        title: "Demo Website"
+        url: "https://nilbasora.github.io/LinkHub/"
+        icon: "website"
+
+      github:
+        title: "Github Repo"
+        url: "https://github.com/LinkHub"
+        icon: "github"
+
+  about-developer:
+    title: "About the Developer"
+    links:
+      website:
+        title: "About Me"
+        url: "https://nilbasora.dev"
+        icon: "website"
+
+      github:
+        title: "My X account (a.k.a Twitter)"
+        url: "https://x.com/nilbasora"
+        icon: "twitter"
+
+theme:
+  name: "default"          # default | dark | neon
