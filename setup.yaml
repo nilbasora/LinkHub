@@ -1,4 +1,4 @@
-# setup.config.yaml
+# setup.yaml
 
 profile:
   name: "LinkHub"
@@ -38,7 +38,7 @@ sections:
         url: "https://nilbasora.dev"
         icon: "website"
 
-      github:
+      twitter:
         title: "My X account (a.k.a Twitter)"
         url: "https://x.com/nilbasora"
         icon: "twitter"
