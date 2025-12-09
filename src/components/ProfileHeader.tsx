@@ -1,27 +1,29 @@
+// src/components/ProfileHeader.tsx
 import React from 'react';
 import { pageConfig } from '../config/loadConfig';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { useThemeTokens } from '../theme/ThemeContext';
 
-export const ProfileHeader = () => {
+export const ProfileHeader: React.FC = () => {
   const p = pageConfig.profile;
-  const initials = p.name
-    .split(' ')
-    .map((x) => x[0])
-    .join('');
+  const tokens = useThemeTokens();
 
   return (
-    <div className="flex flex-col justify-center items-center mb-6">
-      <Avatar className="w-20 h-20 mb-3">
-        {p.avatarUrl && <AvatarImage src={p.avatarUrl} />}
-        <AvatarFallback>{initials}</AvatarFallback>
+    <header className={tokens.profileHeader.header}>
+      <Avatar className={tokens.profileHeader.avatar}>
+        {p.avatarUrl && (
+          <AvatarImage
+            src={p.avatarUrl}
+            alt={p.name}
+            className={tokens.profileHeader.avatarImage}
+          />
+        )}
       </Avatar>
 
-      <h1 className="text-2xl font-semibold">{p.name}</h1>
-      {p.bio && (
-        <p className="text-sm text-muted-foreground max-w-xs text-center mt-1">
-          {p.bio}
-        </p>
-      )}
-    </div>
+      <div className={tokens.profileHeader.textWrapper}>
+        <h1 className={tokens.profileHeader.name}>{p.name}</h1>
+        {p.bio && <p className={tokens.profileHeader.bio}>{p.bio}</p>}
+      </div>
+    </header>
   );
 };
