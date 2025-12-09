@@ -1,4 +1,4 @@
-import React from 'react';
+// src/App.tsx
 import { ThemeProvider } from './theme/ThemeProvider';
 import { LinkPage } from './components/LinkPage';
 
