@@ -1,6 +1,8 @@
+// src/theme/ThemeProvider.tsx
 import React from 'react';
-import { getThemeTokens } from '../config/themes';
 import { pageConfig } from '../config/loadConfig';
+import { getThemeTokens } from '.';
+import { ThemeContext } from './ThemeContext';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -10,13 +12,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     pageConfig.theme?.options,
   );
 
-  const style: React.CSSProperties = Object.fromEntries(
-    Object.entries(tokens)
-  ) as any;
-
   return (
-    <div style={style} className="min-h-screen w-full flex justify-center items-start py-10">
-      {children}
-    </div>
+    <ThemeContext.Provider value={tokens}>
+      <div className={tokens.app.wrapper}>{children}</div>
+    </ThemeContext.Provider>
   );
 };
