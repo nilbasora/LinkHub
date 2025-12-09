@@ -28,6 +28,7 @@ const defaultTokens: ThemeTokens = {
       'w-full justify-center gap-2 h-12 rounded-full text-base font-medium bg-accent text-background hover:bg-accent/90',
     anchor: '',
     icon: 'h-4 w-4',
+    iconWrapper: '',
     label: 'text-white',
   },
   socialLinks: {
