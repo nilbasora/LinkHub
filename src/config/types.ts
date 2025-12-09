@@ -1,5 +1,11 @@
 export type ThemeName = 'default' | 'dark' | 'neon';
 
+//export type NeonStyle = 'old' | 'futuristic';
+
+/*export interface ThemeOptions {
+  style?: NeonStyle;
+}*/
+
 export type ThemeOptions = Record<string, string | number | boolean>;
 
 export type SocialPlatform =
@@ -31,6 +37,11 @@ export interface Section {
   links: LinkItem[];
 }
 
+export interface ThemeConfig {
+  name?: ThemeName;
+  options?: ThemeOptions;
+}
+
 export interface PageConfig {
   profile: {
     name: string;
@@ -39,10 +50,7 @@ export interface PageConfig {
   };
   social: SocialLink[];
   sections: Section[];
-  theme?: {
-    name: ThemeName;
-    options?: ThemeOptions;
-  };
+  theme?: ThemeConfig;
   analytics?: {
     provider?: 'plausible' | 'ga4' | 'none';
     domain?: string;
