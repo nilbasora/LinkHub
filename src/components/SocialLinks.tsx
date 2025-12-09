@@ -14,9 +14,10 @@ import {
   FaGlobe,
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import type { IconType } from 'react-icons';
 import { useThemeTokens } from '../theme/ThemeContext';
 
-const icons: Partial<Record<SocialPlatform, React.ComponentType>> = {
+const icons: Partial<Record<SocialPlatform, IconType>> = {
   twitter: FaTwitter,
   x: FaXTwitter,
   github: FaGithub,
