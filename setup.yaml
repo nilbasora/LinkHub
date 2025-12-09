@@ -2,10 +2,9 @@
 
 profile:
   name: "LinkHub"
-  avatarUrl: "/assets/placeholder.png"
+  avatarUrl: "/linkhub.png"
   bio: "A static, open-source, GitHub Pages–served alternative to Linktree."
 
-# Social links: empty or missing values are treated as "not set"
 social:
   X: "https://x.com/nilbasora"
   github: "https://github.com/LinkHub"
@@ -44,4 +43,6 @@ sections:
         icon: "twitter"
 
 theme:
-  name: "default"          # default | dark | neon
+  name: "neon"          # default | dark | neon
+  options:
+    style: futur
