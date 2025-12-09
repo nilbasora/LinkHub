@@ -1,18 +1,20 @@
+// src/components/Section.tsx
 import React from 'react';
-import { LinkButton } from './LinkButton';
 import type { Section } from '../config/types';
+import { LinkButton } from './LinkButton';
+import { useThemeTokens } from '../theme/ThemeContext';
 
-export const SectionView = ({ section }: { section: Section }) => {
+export const SectionView: React.FC<{ section: Section }> = ({ section }) => {
+  const tokens = useThemeTokens();
+
   return (
-    <div className="mb-6 w-full">
-      <h2 className="text-xs font-semibold uppercase text-muted-foreground mb-2">
-        {section.title}
-      </h2>
-      <div className="flex flex-col gap-3">
+    <section className={tokens.sections.section}>
+      <h2 className={tokens.sections.title}>{section.title}</h2>
+      <div className={tokens.sections.linksWrapper}>
         {section.links.map((l) => (
           <LinkButton key={l.id} link={l} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
