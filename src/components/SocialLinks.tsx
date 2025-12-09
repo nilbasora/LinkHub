@@ -1,9 +1,10 @@
+// src/components/SocialLinks.tsx
 import React from 'react';
 import { pageConfig } from '../config/loadConfig';
 import { Button } from '@/components/ui/button';
+import type { SocialPlatform } from '../config/types';
 import {
   FaTwitter,
-  FaXTwitter,
   FaGithub,
   FaLinkedin,
   FaFacebook,
@@ -11,10 +12,11 @@ import {
   FaInstagram,
   FaTiktok,
   FaGlobe,
-} from 'react-icons/fa6';
-import type { SocialPlatform } from '../config/types';
+} from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { useThemeTokens } from '../theme/ThemeContext';
 
-const icons: Record<SocialPlatform, any> = {
+const icons: Partial<Record<SocialPlatform, React.ComponentType>> = {
   twitter: FaTwitter,
   x: FaXTwitter,
   github: FaGithub,
@@ -26,21 +28,32 @@ const icons: Record<SocialPlatform, any> = {
   website: FaGlobe,
 };
 
-export const SocialLinks = () => {
-  if (!pageConfig.social.length) return null;
+export const SocialLinks: React.FC = () => {
+  const social = pageConfig.social;
+  const tokens = useThemeTokens();
+
+  if (!social.length) return null;
 
   return (
-    <div className="flex gap-2 justify-center mb-6">
-      {pageConfig.social.map((s) => {
+    <nav className={tokens.socialLinks.nav}>
+      {social.map((s) => {
         const Icon = icons[s.platform];
+        if (!Icon) return null;
+
         return (
-          <Button key={s.platform} asChild size="icon" variant="ghost">
-            <a href={s.url} target="_blank">
-              <Icon className="w-5 h-5" />
+          <Button
+            key={s.platform}
+            asChild
+            size="icon"
+            variant="ghost"
+            className={tokens.socialLinks.button}
+          >
+            <a href={s.url} target="_blank" rel="noreferrer">
+              <Icon className={tokens.socialLinks.icon} />
             </a>
           </Button>
         );
       })}
-    </div>
+    </nav>
   );
 };
