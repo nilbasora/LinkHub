@@ -43,6 +43,4 @@ sections:
         icon: "twitter"
 
 theme:
-  name: "neon"          # default | dark | neon
-  options:
-    style: futur
+  name: "default"          # default | dark | neon
