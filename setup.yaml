@@ -38,9 +38,9 @@ sections:
         icon: "website"
 
       twitter:
-        title: "My X account (a.k.a Twitter)"
+        title: "My X account"
         url: "https://x.com/nilbasora"
         icon: "twitter"
 
 theme:
-  name: "default"          # default | dark | neon
+  name: "dark"          # default | dark | neon
