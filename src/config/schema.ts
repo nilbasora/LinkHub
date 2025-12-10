@@ -1,11 +1,19 @@
 // src/config/schema.ts
 import { z } from "zod";
 
-export const RawLinkSchema = z.object({
-  title: z.string().optional(),       // you allow missing title
-  url: z.string(),                    // or z.string().url() if you want strict URLs
-  icon: z.string().optional(),
-});
+export const RawLinkSchema = z
+  .object({
+    title: z.string().optional(),
+    url: z.string(),
+    icon: z.string().optional(),
+  })
+  .refine(
+    (data) => data.title || data.icon,
+    {
+      message: "A link must have at least a title or an icon.",
+      path: ["title"], // where the error will show
+    }
+  );
 
 export const RawSectionSchema = z.object({
   title: z.string(),
