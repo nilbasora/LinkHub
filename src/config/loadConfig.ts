@@ -1,3 +1,6 @@
+// src/config/loadConfig.ts
+import { RawConfigSchema, type RawConfig } from './schema';
+import type { ZodError } from 'zod';
 import type {
   PageConfig,
   SocialLink,
@@ -8,6 +11,19 @@ import type {
 } from './types';
 
 import rawConfig from '../../setup.yaml';
+
+export let configError: ZodError | null = null;
+let validatedConfig: RawConfig;
+
+const parsed = RawConfigSchema.safeParse(rawConfig);
+
+if (!parsed.success) {
+  configError = parsed.error;
+  console.error('❌ Invalid setup.yaml:', parsed.error.format());
+  validatedConfig = rawConfig as any;
+} else {
+  validatedConfig = parsed.data;
+}
 
 const isBlank = (v: unknown) =>
   v === undefined ||
@@ -135,7 +151,7 @@ function normalizeAnalytics(raw: any) {
 }
 
 export const pageConfig: PageConfig = (() => {
-  const profileRaw = rawConfig.profile ?? {};
+  const profileRaw = validatedConfig.profile ?? {};
   const profile = {
     name: profileRaw.name ?? 'Unnamed',
     avatarUrl: isBlank(profileRaw.avatarUrl)
@@ -146,9 +162,9 @@ export const pageConfig: PageConfig = (() => {
 
   return {
     profile,
-    social: normalizeSocial(rawConfig.social),
-    sections: normalizeSections(rawConfig.sections),
-    theme: normalizeTheme(rawConfig.theme),
-    analytics: normalizeAnalytics(rawConfig.analytics),
+    social: normalizeSocial(validatedConfig.social),
+    sections: normalizeSections(validatedConfig.sections),
+    theme: normalizeTheme(validatedConfig.theme),
+    analytics: normalizeAnalytics(validatedConfig.analytics),
   };
 })();
