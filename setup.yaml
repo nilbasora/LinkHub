@@ -1,0 +1,46 @@
+# setup.yaml
+
+profile:
+  name: "LinkHub"
+  avatarUrl: "/linkhub.png"
+  bio: "A static, open-source, GitHub Pages–served alternative to Linktree."
+
+social:
+  X: "https://x.com/nilbasora"
+  github: "https://github.com/LinkHub"
+  linkedin: ""
+  facebook: ""
+  instagram: ""
+  youtube: ""
+  tiktok: ""
+  website: "https://nilbasora.github.io/LinkHub/"
+
+sections:
+  LinkHub:
+    title: "LinkHub Links"
+    links:
+      website:
+        title: "Demo Website"
+        url: "https://nilbasora.github.io/LinkHub/"
+        icon: "website"
+
+      github:
+        title: "Github Repo"
+        url: "https://github.com/LinkHub"
+        icon: "github"
+
+  about-developer:
+    title: "About the Developer"
+    links:
+      website:
+        title: "About Me"
+        url: "https://nilbasora.dev"
+        icon: "website"
+
+      twitter:
+        title: "My X account"
+        url: "https://x.com/nilbasora"
+        icon: "twitter"
+
+theme:
+  name: "dark"          # default | dark | neon
