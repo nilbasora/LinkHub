@@ -111,24 +111,75 @@ Push your changes → GitHub Pages will automatically redeploy.
 Open `http://localhost:5173`
 
 ---
+## 4️⃣ Deploy with GitHub Pages (GitHub Actions)
 
-## 4️⃣ Deploy Automatically with GitHub Pages
+This project deploys using **GitHub Actions**, not “Pages from a branch”.
 
-This repo already includes a GitHub Pages workflow (when pushed to `main`).
+### How it works
 
-Your site appears at:
+- On every push to `main`, GitHub Actions:
+  1) builds the site (`npm ci` + `npm run build`)
+  2) uploads the output folder
+  3) publishes it to GitHub Pages
+
+### Enable it in GitHub
+
+1. Go to **Repository → Settings → Pages**
+2. Under **Build and deployment → Source**, select:
+   ✅ **GitHub Actions**
+3. Push a commit to `main` (or run the workflow manually from the Actions tab)
+
+Your site will be available at:
 
 `https://yourusername.github.io/LinkHub/`
 
 ---
+## 5️⃣ Optional: Custom Domain (recommended)
 
-## 5️⃣ Optional: Custom Domain
+You can use either:
 
-1. Go to Repository → Settings → Pages
+- **Apex/root domain**: `example.com`
+- **Subdomain**: `links.example.com` (recommended if you want less DNS hassle)
 
-2. Enter your domain (example: links.linkhub.com)
+### Step A — Set the domain in GitHub
 
-3. Add a DNS CNAME record linking to yourusername.github.io
+1. Go to **Repository → Settings → Pages**
+2. Under **Custom domain**, enter your domain (example: `links.example.com`) and click **Save**
+3. Wait until GitHub finishes the DNS check
+4. When it becomes available, enable **Enforce HTTPS**
+
+> GitHub will create (or update) a `CNAME` file in your repository automatically.
+
+---
+
+### Step B — Add DNS records (Cloudflare examples)
+
+#### ✅ Option 1 (recommended): use a subdomain like `links.example.com`
+
+In Cloudflare → **DNS**:
+
+- **Type:** `CNAME`
+- **Name:** `links`
+- **Target:** `yourusername.github.io`
+- **Proxy:** `DNS only` (⚠️ important for GitHub HTTPS)
+
+That’s it.
+
+---
+
+#### ✅ Option 2: use the root domain `example.com`
+
+In Cloudflare → **DNS** create **4 A records**:
+
+- **Type:** `A`, **Name:** `@`, **IPv4:** `185.199.108.153`
+- **Type:** `A`, **Name:** `@`, **IPv4:** `185.199.109.153`
+- **Type:** `A`, **Name:** `@`, **IPv4:** `185.199.110.153`
+- **Type:** `A`, **Name:** `@`, **IPv4:** `185.199.111.153`
+
+And optionally add:
+
+- **Type:** `CNAME`, **Name:** `www`, **Target:** `@` (or `yourusername.github.io`)
+- **Proxy:** `DNS only`
 
 ---
 
