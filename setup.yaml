@@ -2,7 +2,7 @@
 
 profile:
   name: "LinkHub"
-  avatarUrl: "/linkhub.png"
+  avatarUrl: "linkhub.png"
   bio: "A static, open-source, GitHub Pages–served alternative to Linktree."
 
 social:

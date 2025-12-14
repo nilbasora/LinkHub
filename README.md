@@ -75,7 +75,7 @@ Example:
 ```yaml
     profile:
       name: "John Doe"
-      avatarUrl: "/avatar.png"
+      avatarUrl: "avatar.png"
       bio: "Welcome to my link hub!"
 
     social:

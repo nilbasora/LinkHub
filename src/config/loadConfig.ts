@@ -25,6 +25,11 @@ if (!parsed.success) {
   validatedConfig = parsed.data;
 }
 
+const withBase = (path: string) => {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+};
+
 const isBlank = (v: unknown) =>
   v === undefined ||
   v === null ||
@@ -156,7 +161,7 @@ export const pageConfig: PageConfig = (() => {
     name: profileRaw.name ?? 'Unnamed',
     avatarUrl: isBlank(profileRaw.avatarUrl)
       ? undefined
-      : profileRaw.avatarUrl,
+      : withBase(String(profileRaw.avatarUrl)),
     bio: isBlank(profileRaw.bio) ? undefined : profileRaw.bio,
   };
 
